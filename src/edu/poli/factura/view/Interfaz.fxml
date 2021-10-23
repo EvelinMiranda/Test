@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="762.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.poli.factura.controller.FormController">
+   <center>
+      <TabPane id="tabpane1" fx:id="tabpane1" prefHeight="675.0" prefWidth="950.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Almacen">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField id="txt1" fx:id="txt1" layoutX="124.0" layoutY="166.0" prefHeight="50.0" prefWidth="200.0" promptText="Dirección" />
+                        <TextField id="txt3" fx:id="txt3" layoutX="124.0" layoutY="266.0" prefHeight="50.0" prefWidth="200.0" promptText="Gerente" />
+                        <TextField id="txt2" fx:id="txt2" layoutX="124.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0" promptText="N.I.T." />
+                        <TextField id="txt4" fx:id="txt4" layoutX="124.0" layoutY="464.0" prefHeight="50.0" prefWidth="200.0" promptText="Telefono" />
+                        <ImageView fitHeight="36.0" fitWidth="146.0" layoutX="285.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Desktop/Olimpical.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="ok1" layoutX="795.0" layoutY="638.0" mnemonicParsing="false" onAction="#save1" prefHeight="50.0" prefWidth="112.0" text="Guardar" />
+                        <TextField id="txt2" fx:id="txt19" layoutX="124.0" layoutY="66.0" prefHeight="50.0" prefWidth="200.0" promptText="Nombre" />
+                        <Label layoutX="124.0" layoutY="116.0" text="Nombre del alamacen" />
+                        <Label layoutX="124.0" layoutY="216.0" text="Dirección del alamacen" />
+                        <Label layoutX="124.0" layoutY="316.0" text="Gerente del alamacen" />
+                        <Label layoutX="124.0" layoutY="415.0" text="N.I.T. del alamacen" />
+                        <Label layoutX="125.0" layoutY="514.0" text="Telefono del alamacen" />
+                        <ImageView fitHeight="453.0" fitWidth="470.0" layoutX="466.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Desktop/Captura%20de%20pantalla%202021-10-20%20192738.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Consumidor">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="tex6" layoutX="211.0" layoutY="286.0" promptText="Numero de Tarjeta" />
+                        <TextField fx:id="tex7" layoutX="211.0" layoutY="317.0" promptText="Puntos" />
+                        <Button fx:id="ok2" layoutX="530.0" layoutY="93.0" mnemonicParsing="false" onAction="#save2" prefHeight="50.0" prefWidth="126.0" text="Guardar info factura" />
+                        <ImageView fitHeight="152.0" fitWidth="220.0" layoutX="-4.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Desktop/logo_part3.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="tex13" layoutX="211.0" layoutY="256.0" promptText="Nombre" />
+                        <Label layoutX="56.0" layoutY="260.0" text="Nombre del cliente" />
+                        <Label layoutX="56.0" layoutY="290.0" text="Tarjeta del cliente" />
+                        <Label layoutX="56.0" layoutY="321.0" text="Puntos tarjeta del cliente" />
+                        <TextField fx:id="txt31" layoutX="276.0" layoutY="94.0" prefHeight="50.0" prefWidth="200.0" promptText="Numero de factura" />
+                        <Label layoutX="276.0" layoutY="146.0" text="Numero de registro de factura " />
+                        <Label layoutX="146.0" layoutY="215.0" text="CONSUMIDOR" />
+                        <Label layoutX="698.0" layoutY="302.0" text="PRODUCTO" />
+                        <HBox layoutX="674.0" layoutY="344.0" prefHeight="26.0" prefWidth="227.0">
+                           <children>
+                              <RadioButton fx:id="opt1" mnemonicParsing="false" prefHeight="18.0" prefWidth="80.0" text="Alimento">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="optproducto" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="opt2" mnemonicParsing="false" prefHeight="19.0" prefWidth="57.0" text="Aseo" toggleGroup="$optproducto" />
+                              <RadioButton fx:id="opt3" mnemonicParsing="false" prefHeight="18.0" prefWidth="90.0" selected="true" text="Electronico" toggleGroup="$optproducto" />
+                           </children>
+                        </HBox>
+                        <Label layoutX="562.0" layoutY="344.0" text="Tipo de producto" />
+                        <TextField fx:id="tex8" layoutX="751.0" layoutY="435.0" promptText="Nombre del Producto" />
+                        <Label layoutX="562.0" layoutY="439.0" text="Nombre del producto" />
+                        <TextField fx:id="tex9" layoutX="751.0" layoutY="471.0" promptText="Codigo" />
+                        <Label layoutX="562.0" layoutY="474.0" text="Codigo del producto" />
+                        <TextField fx:id="tex12" layoutX="751.0" layoutY="503.0" promptText="Impuesto" />
+                        <Label layoutX="558.0" layoutY="507.0" text="Impuesto sobre el producto" />
+                        <TextField fx:id="tex10" layoutX="751.0" layoutY="538.0" promptText="Precio" />
+                        <Label layoutX="558.0" layoutY="542.0" text="Precio unitario del producto" />
+                        <TextField fx:id="tex11" layoutX="751.0" layoutY="572.0" promptText="Cantidad" />
+                        <Label layoutX="558.0" layoutY="577.0" text="Cantidad de unidades productO" />
+                        <Label layoutX="170.0" layoutY="499.0" text="PAGO" />
+                        <HBox layoutX="86.0" layoutY="543.0" prefHeight="23.0" prefWidth="200.0">
+                           <children>
+                              <RadioButton fx:id="opt4" mnemonicParsing="false" prefHeight="18.0" prefWidth="74.0" text="Tarjeta">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="optpago" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="opt5" mnemonicParsing="false" prefHeight="18.0" prefWidth="75.0" text="Efectivo" toggleGroup="$optpago" />
+                              <RadioButton fx:id="opt6" mnemonicParsing="false" prefHeight="18.0" prefWidth="73.0" selected="true" text="Cheque" toggleGroup="$optpago" />
+                           </children>
+                        </HBox>
+                        <Label layoutX="137.0" layoutY="566.0" text="Metodo de pago" />
+                        <Button fx:id="ok3" layoutX="653.0" layoutY="628.0" mnemonicParsing="false" onAction="#save3" prefHeight="50.0" prefWidth="112.0" text="Aregar al carrito" />
+                        <DatePicker fx:id="date1" layoutX="46.0" layoutY="95.0" prefHeight="50.0" prefWidth="200.0" promptText="Fecha" />
+                        <ImageView fitHeight="153.0" fitWidth="460.0" layoutX="765.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Desktop/Captura%20de%20pantalla%202021-10-20%20192738.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="191.0" layoutY="45.0" text="INFORMACION DE LA FACTURA" />
+                        <Button fx:id="ok4" layoutX="129.0" layoutY="628.0" mnemonicParsing="false" onAction="#save4" prefHeight="50.0" prefWidth="145.0" text="Guardar forma de pago" />
+                        <Button fx:id="ok5" layoutX="144.0" layoutY="357.0" mnemonicParsing="false" onAction="#save5" prefHeight="50.0" prefWidth="112.0" text="Guardar" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Consulta">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="638.0" prefWidth="930.0">
+                     <children>
+                        <Button fx:id="delete" layoutX="809.0" layoutY="583.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="50.0" prefWidth="112.0" text="Eliminar" />
+                        <Button fx:id="actu" layoutX="63.0" layoutY="368.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
+                        <Label layoutX="360.0" layoutY="291.0" text="Nombre" />
+                        <Label layoutX="359.0" layoutY="329.0" text="Drección" />
+                        <Label layoutX="360.0" layoutY="363.0" text="Gerente" />
+                        <Label layoutX="359.0" layoutY="435.0" text="Telefono" />
+                        <TextField fx:id="nom_tienda" layoutX="419.0" layoutY="287.0" />
+                        <TextField fx:id="direc_tienda" layoutX="419.0" layoutY="325.0" />
+                        <TextField fx:id="ger_tienda" layoutX="419.0" layoutY="359.0" />
+                        <TextField fx:id="teltienda" layoutX="419.0" layoutY="431.0" />
+                        <Label layoutX="68.0" layoutY="291.0" text="Nombre" />
+                        <TextField fx:id="nom_cliente" layoutX="132.0" layoutY="287.0" />
+                        <Label layoutX="385.0" layoutY="238.0" prefHeight="18.0" prefWidth="167.0" text="INFORMACIÓN DE LA TIENDA" />
+                        <Label layoutX="97.0" layoutY="238.0" text="INFORMACIÓN DEL CLIENTE" />
+                        <Label layoutX="103.0" layoutY="477.0" prefHeight="18.0" prefWidth="167.0" text="INFORMACIÓN DEL PAGO" />
+                        <TextField fx:id="txt100" layoutX="38.0" layoutY="44.0" prefHeight="50.0" prefWidth="213.0" promptText="BUSCAR POR NUMERO DE FACTUTA" />
+                        <Button fx:id="buscar" layoutX="397.0" layoutY="146.0" mnemonicParsing="false" onAction="#buscar" text="Consultar info de tienda" />
+                        <ImageView fitHeight="166.0" fitWidth="245.0" layoutX="423.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Desktop/Captura%20de%20pantalla%202021-10-20%20192738.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="form_pago" layoutX="167.0" layoutY="520.0" />
+                        <Label layoutX="68.0" layoutY="524.0" text="Forma de pago" />
+                        <TextArea fx:id="fechafactura" layoutX="742.0" layoutY="50.0" prefHeight="38.0" prefWidth="164.0" />
+                        <Button fx:id="CP" layoutX="127.0" layoutY="146.0" mnemonicParsing="false" onAction="#consultacp" text="Consultar info del cliente y pago" />
+                        <Button fx:id="cpr" layoutX="731.0" layoutY="146.0" mnemonicParsing="false" onAction="#consultapr" text="Consultar productos" />
+                        <Label layoutX="360.0" layoutY="397.0" text="NIT" />
+                        <TextField fx:id="txtnit" layoutX="420.0" layoutY="393.0" />
+                        <Label layoutX="68.0" layoutY="329.0" text="ID cliente" />
+                        <TextField fx:id="txtidcliente" layoutX="133.0" layoutY="325.0" />
+                        <Button fx:id="actua2" layoutX="64.0" layoutY="563.0" mnemonicParsing="false" onAction="#actualizarpago" text="Actualizar" />
+                        <Button fx:id="actua3" layoutX="359.0" layoutY="464.0" mnemonicParsing="false" onAction="#actualizartienda" text="Actualizar" />
+                        <TableView fx:id="tbl1" layoutX="620.0" layoutY="230.0" prefHeight="328.0" prefWidth="305.0">
+                          <columns>
+                            <TableColumn prefWidth="260.799951171875" text="Producto">
+                                 <columns>
+                                    <TableColumn fx:id="n" prefWidth="53.60003662109375" text="Nombre" />
+                                    <TableColumn fx:id="c" prefWidth="46.39996337890625" text="Codigo" />
+                                    <TableColumn fx:id="ca" prefWidth="57.5999755859375" text="Cantidad" />
+                                    <TableColumn fx:id="p" prefWidth="43.2000732421875" text="Precio" />
+                                    <TableColumn fx:id="i" minWidth="7.99993896484375" prefWidth="59.199951171875" text="Impuesto" />
+                                    <TableColumn fx:id="t" minWidth="0.0" prefWidth="51.199951171875" text="tipo" />
+                                 </columns>
+                              </TableColumn>
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
