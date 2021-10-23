@@ -1,0 +1,61 @@
+CREATE TABLE Tienda
+(
+  nit varchar (50) NOT NULL,
+  nombre varchar (50) NOT NULL,
+  direccion varchar (50) NOT NULL,
+  gerente varchar (50) NOT NULL,
+  telefono varchar (50) NOT NULL,
+  PRIMARY KEY (nit)
+);
+
+CREATE TABLE Factura
+(
+  numero INT NOT NULL,
+  fecha datetime NOT NULL,
+  nit varchar (50) NOT NULL,
+  PRIMARY KEY (numero),
+  FOREIGN KEY (nit) REFERENCES Tienda(nit)
+);
+alter table Factura
+modify fecha varchar (50) not null;
+
+
+CREATE TABLE Consumidor
+(
+  nombre varchar (50) NOT NULL,
+  idConsumidor varchar (50) NOT NULL,
+  puntos varchar (50) NOT NULL,
+  numero INT NOT NULL,
+  PRIMARY KEY (idConsumidor),
+  FOREIGN KEY (numero) REFERENCES Factura(numero)
+);
+alter table Consumidor
+drop column puntos;
+alter table Consumidor
+change column nombre nombrec
+varchar (50) not null;
+
+CREATE TABLE Producto
+(
+  codigo varchar (50) NOT NULL,
+  cantidad double NOT NULL,
+  nombre varchar (50) NOT NULL,
+  precio double NOT NULL,
+  impuesto INT NOT NULL,
+  tipo varchar (50) NOT NULL,
+  nit varchar (50) NOT NULL,
+  idConsumidor varchar (50),
+  PRIMARY KEY (codigo),
+  FOREIGN KEY (nit) REFERENCES Tienda(nit),
+  FOREIGN KEY (idConsumidor) REFERENCES Consumidor(idConsumidor)
+);
+
+
+CREATE TABLE Pago
+(
+  idRegistroDePago int NOT NULL,
+  tipo varchar (50) NOT NULL,
+  numero INT NOT NULL,
+  PRIMARY KEY (idRegistroDePago),
+  FOREIGN KEY (numero) REFERENCES Factura(numero)
+);
