@@ -1,0 +1,127 @@
+CREATE TABLE Tienda
+(
+  nit  varchar (50) NOT NULL,
+  nombre varchar (500) NOT NULL,
+  direccion varchar (500) NOT NULL,
+  gerente varchar (500) NOT NULL,
+  telefono INT NOT NULL,
+  PRIMARY KEY (nit)
+);
+
+CREATE TABLE Consumidor
+(
+  nombre varchar (500) NOT NULL,
+  No_documento INT NOT NULL,
+  PRIMARY KEY (No_documento)
+
+);
+
+CREATE TABLE Producto
+(
+  Id_producto  varchar (50) NOT NULL,
+  nombre varchar (500) NOT NULL,
+  precio double NOT NULL,
+  tipo varchar (500) NOT NULL,
+  nit  varchar (50) NOT NULL,
+  PRIMARY KEY (Id_producto),
+  FOREIGN KEY (nit) REFERENCES Tienda(nit)
+);
+
+
+
+CREATE TABLE Factura
+(
+  id_factura  varchar (50) NOT NULL,
+  fecha varchar (50) not null,
+  cantidad double not null,
+  precio double NOT NULL,
+  nit  varchar (50) NOT NULL,
+  No_documento INT NOT NULL,
+  Id_producto  varchar (50) NOT NULL,
+  PRIMARY KEY (id_factura, No_documento, Id_producto ),
+  FOREIGN KEY (nit) REFERENCES Tienda(nit),
+  FOREIGN KEY (No_documento) REFERENCES Consumidor(No_documento),
+  FOREIGN KEY (Id_producto) REFERENCES Producto(Id_producto)
+);
+create table insertions
+(
+actionDate date,
+actionn varchar (100) NOT NULL
+);
+ALTER TABLE factura ADD Valor_Prod_IVA double NULL ;
+ALTER TABLE insertions add nit VARCHAR(50)  ;
+
+drop trigger if exists tggins;
+
+-- Trigger
+
+create trigger tggins
+after insert on tienda
+for each row
+insert into insertions (actionDate, actionn, nit)
+value (now(),"INSERT", new.nit);
+
+-- Procedimiento almacenado
+
+DROP PROCEDURE  ValIva
+DELIMITER //
+CREATE PROCEDURE ValIva()
+BEGIN
+DECLARE var_final BOOLEAN DEFAULT FALSE;
+
+DECLARE id varchar (50) DEFAULT 0;
+DECLARE cantidadp double DEFAULT 0;
+DECLARE preciop double DEFAULT 0;
+DECLARE valIVA DECIMAL(20,2) DEFAULT NULL;
+DECLARE tipop varchar (500) DEFAULT '';
+DECLARE CURSOR1 CURSOR FOR
+
+select f.Id_producto, f.cantidad, f.precio, f.Valor_Prod_IVA, p.tipo
+from factura f, producto p
+where f.Id_producto=p.Id_producto;
+
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET var_final = TRUE;
+
+OPEN CURSOR1;
+BUCLE : LOOP
+FETCH CURSOR1 INTO id, cantidadp,preciop,valIVA, tipop;
+IF var_final THEN
+LEAVE bucle;
+
+
+elseIF tipop = "Electronico" THEN
+set valIVA = preciop+(preciop * 1.18)*cantidadp;
+
+elseIF tipop = "Alimento" THEN
+set valIVA = (preciop * 1.15)*cantidadp;
+
+elseIF tipop = "Aseo" THEN
+set valIVA = (preciop * 1.16)*cantidadp;
+
+else
+set valIVA = 0;
+END IF;
+
+UPDATE factura
+SET Valor_Prod_IVA = valIVA
+WHERE Id_producto = id;
+
+END LOOP BUCLE;
+
+CLOSE CURSOR1;
+
+select f.Id_producto, f.cantidad, f.precio, f.Valor_Prod_IVA, p.tipo
+from factura f, producto p
+where f.Id_producto=p.Id_producto;
+
+END //
+DELIMITER ;
+call ValIva();
+
+-- view
+
+create view info_factura as
+SELECT  p.nombre, f.fecha, f.No_documento, f.precio, f.Valor_Prod_IVA as totalConImpuesto FROM factura f, producto p, consumidor c   
+where  c.No_documento=f.No_documento  and p.Id_producto=f.Id_producto and id_factura = 02 ;
+
+select * from info_factura;
